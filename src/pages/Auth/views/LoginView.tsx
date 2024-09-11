@@ -75,7 +75,7 @@ function LoginView() {
           </button>
         </div>
         <p className="text-start pt-2">
-          ¿ Todavía no tienes cuenta ?{" "}
+          ¿Todavía no tienes cuenta?{" "}
           <Link to="/users/register" style={{ cursor: "pointer" }}>
             Registrate <ArrowRight size={20} />
           </Link>

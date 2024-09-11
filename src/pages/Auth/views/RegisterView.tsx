@@ -112,7 +112,7 @@ function RegisterView() {
           </button>
         </div>
         <p className="text-start pt-2">
-          ¿ Ya tienes cuenta ?{" "}
+          ¿Ya tienes cuenta?{" "}
           <Link to="/users/login" style={{ cursor: "pointer" }}>
             Inicia sesión <ArrowRight size={20} />
           </Link>

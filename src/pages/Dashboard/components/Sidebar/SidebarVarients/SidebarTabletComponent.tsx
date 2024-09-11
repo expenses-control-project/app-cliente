@@ -19,34 +19,31 @@ function SidebarTabletComponent() {
   );
   return (
     <nav
-      className="d-none d-lg-flex d-max-xl-flex flex-column flex-shrink-0 bg-body-secondary"
+      className="d-none d-lg-flex d-xxl-none flex-column flex-shrink-0 bg-body-secondary border-end"
       style={{width: "4.5rem", height: "100vh"}}
     >
       <div
-        className="d-block p-3 link-dark text-decoration-none mb-3"
+        className="d-block p-3 link-dark text-decoration-none"
       >
         <img src={logo_ec} alt="Logo expenses control" width={40} height={40} />
       </div>
       <ul className="nav nav-pills nav-flush flex-column mb-auto text-center">
-        <li className="nav-item ">
+        <li className="nav-item link-hover py-3">
           <LinkTooltip title="Inicio" id="t-1" to="/dashboard/inicio" >
             <House size={30} color="white"/>
           </LinkTooltip>
         </li>
-        <hr />
-        <li className="nav-item">
+        <li className="nav-item link-hover border-top py-3">
           <LinkTooltip title="Movimientos" id="t-1" to="/dashboard/movimientos" >
             <Activity size={30} color="white"/>
           </LinkTooltip>
         </li>
-        <hr />
-        <li className="nav-item">
+        <li className="nav-item link-hover border-top py-3">
           <LinkTooltip title="Establecimientos" id="t-1" to="/dashboard/establecimientos" >
             <Shop size={30} color="white"/>
           </LinkTooltip>
         </li>
-        <hr />
-        <li className="nav-item">
+        <li className="nav-item link-hover border-top py-3">
           <LinkTooltip title="Metricas" id="t-1" to="/dashboard/metricas" >
             <BarChart size={30} color="white"/>
           </LinkTooltip>

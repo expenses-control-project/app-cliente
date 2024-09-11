@@ -2,7 +2,7 @@ import React from 'react'
 
 function HomeView() {
   return (
-    <div>HomeVIew</div>
+    <div >HomeVIew</div>
   )
 }
 
