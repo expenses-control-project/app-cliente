@@ -1,0 +1,8 @@
+.bottom-navbar-label{
+    display: none;
+}
+@media screen and (min-width: 363px) {
+    .bottom-navbar-label {
+        display: block;
+    }    
+}

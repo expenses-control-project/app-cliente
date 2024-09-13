@@ -1,0 +1,55 @@
+.account-cash {
+    background: radial-gradient(90% 100% at 50.14% 0%, #18c574 1.26%, #0E3F28 100%);
+    width: 30rem;
+    max-width: 30rem;
+    height: 10rem;
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+    border-radius: 1rem;
+    position: relative;
+    cursor: pointer;
+    border: 0.15rem solid #18c574;
+}
+
+.account-banck {
+    background: radial-gradient(90% 100% at 50.14% 0%, #934400 1.26%, #3D1C00 100%);
+    width: 30rem;
+    max-width: 30rem;
+    height: 10rem;
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+    border-radius: 1rem;
+    position: relative;
+    cursor: pointer;
+    border: 0.15rem solid #934400;
+}
+
+.account-wallet {    
+    background: radial-gradient(90% 100% at 50.14% 0%, #00d3eb  1.26%, #002327 100%);
+    width: 30rem;
+    max-width: 30rem;
+    height: 10rem;
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+    border-radius: 1rem;
+    position: relative;
+    cursor: pointer;
+    border: 0.15rem solid #00d3eb;
+}
+
+@media screen and (max-width: 991px) {
+    .account-cash {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .account-banck {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .account-wallet {
+        width: 100%;
+        max-width: 100%;
+    }
+}
