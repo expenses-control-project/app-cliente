@@ -1,15 +1,16 @@
+import { Link, useLocation } from "react-router-dom";
+
 import {
-  Activity,
-  BarChart,
   House,
   Shop,
 } from "react-bootstrap-icons";
-import { Link } from "react-router-dom";
-
+import { FiPieChart } from "react-icons/fi";
 import logo_ec from "../../../../../assets/logo_ec.svg";
 
-
 function SidebarDesktopComponent() {
+  const location = useLocation();
+  const lastSegment = location.pathname.split('/').filter(Boolean).pop();
+  
   return (
     <nav
       className="d-none d-xxl-flex flex-column flex-shrink-0 bg-body-secondary text-white border-end"
@@ -23,7 +24,7 @@ function SidebarDesktopComponent() {
         <li className="nav-item link-hover">
           <Link
             to="/dashboard/inicio"
-            className="nav-link active d-flex gap-2 align-items-center fs-6 rounded-0"
+            className={`nav-link ${lastSegment == "inicio" && "active"} text-white d-flex gap-2 align-items-center fs-6 rounded-0`}
             aria-current="page"
           >
             <House size={20} /> Inicio
@@ -32,29 +33,20 @@ function SidebarDesktopComponent() {
         <li className="link-hover">
           <Link
             to="/dashboard/actividad"
-            className="nav-link text-white d-flex gap-2 align-items-center fs-6 rounded-0"
+            className={`nav-link ${lastSegment == "actividad" && "active"} text-white d-flex gap-2 align-items-center fs-6 rounded-0`}
             aria-current="page"
           >
-            <Activity size={20} /> Actividad
+            <FiPieChart size={20} /> Actividad
           </Link>
         </li>
         <li className="link-hover">
           <Link
             to="/dashboard/locales"
-            className="nav-link text-white d-flex gap-2 align-items-center fs-6 rounded-0"
+            className={`nav-link ${lastSegment == "locales" && "active"} text-white d-flex gap-2 align-items-center fs-6 rounded-0`}
             aria-current="page"
           >
             <Shop size={20} />
             Locales
-          </Link>
-        </li>
-        <li className="link-hover">
-          <Link
-            to="/dashborad/metricas"
-            className="nav-link text-white d-flex gap-2 align-items-center fs-6 rounded-0"
-            aria-current="page"
-          >
-            <BarChart size={20} /> Metricas
           </Link>
         </li>
       </ul>

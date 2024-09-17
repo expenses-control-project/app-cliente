@@ -1,0 +1,11 @@
+.btn-add-account{
+    position: fixed;
+    bottom: 0.5rem;
+    right: 0.5rem;
+}
+
+@media screen and (max-width: 991px) {
+    .btn-add-account {
+        bottom: 5.5rem;
+    }
+}

@@ -17,6 +17,9 @@ importers:
       bootstrap:
         specifier: ^5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
+      chart.js:
+        specifier: ^4.4.4
+        version: 4.4.4
       chartjs:
         specifier: ^0.3.24
         version: 0.3.24
@@ -47,6 +50,9 @@ importers:
       react-router-dom:
         specifier: ^6.26.1
         version: 6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-tiny-fab:
+        specifier: ^4.0.4
+        version: 4.0.4(react@18.3.1)
       styled-components:
         specifier: ^6.1.13
         version: 6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1066,6 +1072,12 @@ packages:
   react-router@6.26.1:
     resolution: {integrity: sha512-kIwJveZNwp7teQRI5QmwWo39A5bXRyqpH0COKKmPnyD2vBvDwgFXSqDUYtt1h+FEyfnE8eXr7oe0MxRzVwCcvQ==}
     engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+
+  react-tiny-fab@4.0.4:
+    resolution: {integrity: sha512-PxT6gEnIQR2vFfeIaa1Oq4PRX+cIEDbEfbS6PyevWCQngrKfqjMKPEcZOaaURaUclB9u3RilgjkaBUQFVlbWcg==}
+    engines: {node: '>=10'}
     peerDependencies:
       react: '>=16.8'
 
@@ -2141,6 +2153,10 @@ snapshots:
   react-router@6.26.1(react@18.3.1):
     dependencies:
       '@remix-run/router': 1.19.1
+      react: 18.3.1
+
+  react-tiny-fab@4.0.4(react@18.3.1):
+    dependencies:
       react: 18.3.1
 
   react-transition-group@4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1):

@@ -57,9 +57,9 @@ function AccountsComponent() {
                   width="93.8462"
                   height="74.7447"
                   filterUnits="userSpaceOnUse"
-                  color-interpolation-filters="sRGB"
+                  colorInterpolationFilters="sRGB"
                 >
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
                   <feBlend
                     mode="normal"
                     in="SourceGraphic"
@@ -78,9 +78,9 @@ function AccountsComponent() {
                   width="92.1795"
                   height="68.2987"
                   filterUnits="userSpaceOnUse"
-                  color-interpolation-filters="sRGB"
+                  colorInterpolationFilters="sRGB"
                 >
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
                   <feBlend
                     mode="normal"
                     in="SourceGraphic"
@@ -120,7 +120,7 @@ function AccountsComponent() {
                 <path
                   d="M10.098 32.5666L9.83921 31.6007L8.87328 31.8595L6.31579 32.5448L5.88933 30.9532L60.3322 16.3653L60.7587 17.9568L58.2012 18.6421L57.2352 18.9009L57.4941 19.8669L62.2145 37.484L62.4734 38.4499L63.4393 38.1911L65.9968 37.5058L66.4232 39.0973L11.9804 53.6853L11.5539 52.0937L14.1114 51.4084L15.0773 51.1496L14.8185 50.1837L10.098 32.5666ZM24.6817 48.5761L25.6476 48.3173L25.3888 47.3514L20.6683 29.7343L20.4095 28.7684L19.4435 29.0272L15.9201 29.9713L14.9542 30.2301L15.213 31.196L19.9335 48.8131L20.1923 49.779L21.1582 49.5202L24.6817 48.5761ZM35.2519 45.7438L36.2179 45.485L35.959 44.5191L31.2385 26.902L30.9797 25.9361L30.0138 26.1949L26.4904 27.139L25.5245 27.3978L25.7833 28.3637L30.5038 45.9808L30.7626 46.9468L31.7285 46.6879L35.2519 45.7438ZM45.8222 42.9115L46.7881 42.6527L46.5293 41.6868L41.8088 24.0697L41.55 23.1038L40.5841 23.3626L37.0606 24.3067L36.0947 24.5655L36.3535 25.5314L41.074 43.1485L41.3328 44.1145L42.2988 43.8556L45.8222 42.9115ZM56.3924 40.0793L57.3584 39.8204L57.0995 38.8545L52.3791 21.2374L52.1202 20.2715L51.1543 20.5303L47.6309 21.4744L46.665 21.7332L46.9238 22.6991L51.6443 40.3162L51.9031 41.2822L52.869 41.0234L56.3924 40.0793ZM58.8705 10.91L4.42759 25.4979L2.97758 20.0864L27.4638 2.58439L57.4204 5.49847L58.8705 10.91ZM67.885 44.5526L69.2555 49.6676L14.8127 64.2555L13.4421 59.1405L67.885 44.5526Z"
                   stroke="#934400"
-                  stroke-width="2"
+                  strokeWidth="2"
                 />
               </g>
               <defs>
@@ -131,9 +131,9 @@ function AccountsComponent() {
                   width="70.648"
                   height="65.9275"
                   filterUnits="userSpaceOnUse"
-                  color-interpolation-filters="sRGB"
+                  colorInterpolationFilters="sRGB"
                 >
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
                   <feBlend
                     mode="normal"
                     in="SourceGraphic"
@@ -191,9 +191,9 @@ function AccountsComponent() {
                   width="72.5139"
                   height="61.7572"
                   filterUnits="userSpaceOnUse"
-                  color-interpolation-filters="sRGB"
+                  colorInterpolationFilters="sRGB"
                 >
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
                   <feBlend
                     mode="normal"
                     in="SourceGraphic"

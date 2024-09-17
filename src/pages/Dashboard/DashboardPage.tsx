@@ -8,7 +8,6 @@ import BottomNavbar from "./components/Sidebar/BottomNavbar/BottomNavbar";
 // Views
 const HomeVIew = lazy(() => import("./views/Home/HomeView"));
 const EstablishmentsVIew = lazy(() => import("./views/Establishments/EstablishmentsVIew"));
-const MetricsView = lazy(() => import("./views/Metrics/MetricsView"));
 const MovementsView = lazy(() => import("./views/Movements/MovementsView"));
 
 function DashboardPage() {
@@ -22,7 +21,6 @@ function DashboardPage() {
             <Route path="/inicio" element={<HomeVIew />} />
             <Route path="/locales" element={<EstablishmentsVIew />} />
             <Route path="/actividad" element={<MovementsView />} />
-            <Route path="/metricas" element={<MetricsView />} />
             <Route path="/*" element={<Navigate to="/dashboard/inicio" />} />
           </Routes>
         </Suspense>
