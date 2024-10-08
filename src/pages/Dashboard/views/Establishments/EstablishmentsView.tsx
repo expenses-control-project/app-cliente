@@ -17,7 +17,7 @@ import IconsRubrosComponent from "../../../../components/icons/IconsRubrosCompon
 import LoaderComponent from "../../../../components/Loader/LoaderComponent";
 import Swal from "sweetalert2";
 
-function EstablishmentsVIew() {
+function EstablishmentsView() {
   const [showModalEstablishments, setShowModalEstablishments] = useState(false);
   const [title, setTitle] = useState("");
 
@@ -160,4 +160,4 @@ function EstablishmentsVIew() {
   );
 }
 
-export default EstablishmentsVIew;
+export default EstablishmentsView;

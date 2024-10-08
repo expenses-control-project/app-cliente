@@ -27,10 +27,10 @@ export const postAccountRequest = (data: any) => {
   };
 };
 
-export const putAccountRequest = (id: number, data: any) => {
+export const patchAccountRequest = (data: any) => {
   const controller = loadAbort();
   return {
-    call: axios.patch(`/cuenta/${id}`, data, {
+    call: axios.patch("/cuenta/", data, {
       signal: controller.signal,
     }),
     controller,

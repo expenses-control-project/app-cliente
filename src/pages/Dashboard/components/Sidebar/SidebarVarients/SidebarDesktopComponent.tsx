@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 
 import {
+  CashStack,
   House,
   Shop,
 } from "react-bootstrap-icons";
@@ -28,6 +29,15 @@ function SidebarDesktopComponent() {
             aria-current="page"
           >
             <House size={20} /> Inicio
+          </Link>
+        </li>
+        <li className="nav-item link-hover">
+          <Link
+            to="/dashboard/cuentas"
+            className={`nav-link ${lastSegment == "cuentas" && "active"} text-white d-flex gap-2 align-items-center fs-6 rounded-0`}
+            aria-current="page"
+          >
+            <CashStack size={20} /> Cuentas
           </Link>
         </li>
         <li className="link-hover">

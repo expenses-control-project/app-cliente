@@ -1,4 +1,4 @@
-import { House, Shop } from "react-bootstrap-icons";
+import { CashStack, House, Shop } from "react-bootstrap-icons";
 import { Link, useLocation } from "react-router-dom";
 
 import logo_ec from "../../../../../assets/logo_ec.svg";
@@ -24,6 +24,15 @@ function SidebarTabletComponent() {
           >
             <House size={20} color="white" />
             Inicio
+          </Link>
+        </li>
+        <li className="nav-item link-hover  ">
+          <Link
+            to="/dashboard/cuentas"
+            className={`nav-link ${lastSegment == "cuentas" && "active"} text-white d-flex align-items-center fs-6 rounded-0 d-flex flex-column`}
+          >
+            <CashStack size={20} color="white" />
+            Cuentas
           </Link>
         </li>
         <li className="nav-item link-hover border-top">
