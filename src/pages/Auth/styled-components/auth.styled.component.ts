@@ -54,3 +54,24 @@ export const Element2 = styled.div`
     }
 `;
 
+export const ContainerViewAuth = styled.div`
+    @media (max-height: 624px) {
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+`
+export const NombreInput = styled.input`
+    border-top-left-radius: 1.4rem;
+    border-top-right-radius: 0.5rem;
+    @media (max-width: 576px) {
+        border-top-left-radius: 1.4rem;
+        border-top-right-radius: 1.4rem;
+    }`
+
+export const ApellidoInput = styled.input`
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 1.4rem;
+    @media (max-width: 576px) {
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+}`

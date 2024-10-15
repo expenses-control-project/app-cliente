@@ -2,8 +2,8 @@ import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import logo_ec from "../../assets/logo_ec.svg";
-import { Element1, Element2 } from "./styled-components/auth.styled.component";
 import LoaderComponent from "../../components/Loader/LoaderComponent";
+import { ContainerViewAuth } from "./styled-components/auth.styled.component";
 
 // Pages
 const LoginView = lazy(() => import("./views/LoginView"));
@@ -12,9 +12,9 @@ const RegisterView = lazy(() => import("./views/RegisterView"));
 function AuthPage() {
   return (
     <Suspense fallback={<LoaderComponent />}>
-      <div
+      <ContainerViewAuth
         className="d-flex flex-column align-items-center "
-        style={{ height: "100vh", width: "100vw", background: "#0F172A" }}
+        style={{ background: "#0F172A", height: "100vh"}}
       >
         <nav
           className="d-flex justify-content-center pt-5 rounded-5 rounded-top-0"
@@ -24,17 +24,15 @@ function AuthPage() {
         </nav>
         <div
           className="d-flex justify-content-center align-items-center"
-          style={{ height: "100%", position: "relative" }}
+          style={{ position: "relative" }}
         >
           <Routes>
             <Route path="/login" element={<LoginView />} />
             <Route path="/register" element={<RegisterView />} />
           </Routes>
         </div>
-        <Element1 />
-        <Element2 />
         <p>© 2024 Expenses Control. Apache-2.0 license</p>
-      </div>
+      </ContainerViewAuth>
     </Suspense>
   );
 }

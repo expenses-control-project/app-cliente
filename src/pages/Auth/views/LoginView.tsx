@@ -5,59 +5,102 @@ import {
   EyeFill,
   EyeSlashFill,
 } from "react-bootstrap-icons";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import useFetchAndLoad from "../../../hooks/useFetchAndLoad";
+import { login } from "../../../services/auth.service";
+import { setItem } from "../../../utils/localStoreMethods";
 
 function LoginView() {
   const [showPassword, setShowPassword] = useState(false);
+  const { callEndpoint } = useFetchAndLoad();
+
+  const navigate = useNavigate();
 
   const handleTogglePassword = () => {
     setShowPassword((prev) => !prev);
   };
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = handleSubmit(async (data: any) => {
+    try {
+      const res = await callEndpoint(login(data))
+      
+      setItem("token",res?.data.accesToken);
+      if (res?.request.status == 201) {
+        navigate('/dashboard/inicio')
+      }
+
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
   return (
     <section className="text-center px-4">
       <h1 className="fs-1">Iniciar Sesión</h1>
       <p>Por favor ingrese sus credenciales para acceder al sistema</p>
-      <form action="">
-        <div className="form-floating mb-3">
-          <input
-            type="email"
-            className="form-control"
-            id="floatingInput"
-            placeholder="name@example.com"
-            style={{
-              borderTopRightRadius: "1.4rem",
-              borderTopLeftRadius: "1.4rem",
-            }}
-          />
-          <label form="floatingInput">Correo Electronico</label>
-          <EnvelopeFill
-            size={30}
-            className="position-absolute top-50 end-0 translate-middle-y me-3"
-          />
+      <form onSubmit={onSubmit}>
+        <div className="d-flex flex-column align-items-start mb-3">
+          <div className="form-floating" style={{ width: "100%" }}>
+            <input
+              type="text"
+              className="form-control"
+              id="floatingInputEmailOrUserName"
+              placeholder="example"
+              {...register("usuario", {
+                required: "Se necesita un nombre de usuario o email",
+              })}
+            />
+            <label form="floatingInputEmailOrUserName">Nombre de usuario o Email</label>
+          </div>
+          {errors.usuario && (
+            <p role="alert" className="text-danger mb-0">
+              {errors.usuario?.message?.toString()}
+            </p>
+          )}
         </div>
-        <div className="form-floating mb-3 position-relative">
-          <input
-            type={showPassword ? "text" : "password"}
-            className="form-control"
-            id="floatingInput"
-            placeholder="123456"
-          />
-          <label form="floatingInput">Contraseña</label>
-          {showPassword ? (
-            <EyeSlashFill
-              onClick={handleTogglePassword}
-              size={30}
-              className="position-absolute top-50 end-0 translate-middle-y me-3 "
-              style={{ cursor: "pointer" }}
+        <div className="d-flex flex-column align-items-start mb-3">
+          <div className="form-floating position-relative" style={{width: "100%"}}>
+            <input
+              type={showPassword ? "text" : "password"}
+              className="form-control"
+              id="floatingInput"
+              placeholder="123456"
+              {...register("password", {
+                required: "Se necesita una contraseña",
+                minLength: {
+                  value: 8,
+                  message: "La contraseña debe tener al menos 8 caracteres",
+                },
+              })}
             />
-          ) : (
-            <EyeFill
-              onClick={handleTogglePassword}
-              size={30}
-              className="position-absolute top-50 end-0 translate-middle-y me-3 "
-              style={{ cursor: "pointer" }}
-            />
+            <label form="floatingInput">Contraseña</label>
+            {showPassword ? (
+              <EyeSlashFill
+                onClick={handleTogglePassword}
+                size={30}
+                className="position-absolute top-50 end-0 translate-middle-y me-3 "
+                style={{ cursor: "pointer" }}
+              />
+            ) : (
+              <EyeFill
+                onClick={handleTogglePassword}
+                size={30}
+                className="position-absolute top-50 end-0 translate-middle-y me-3 "
+                style={{ cursor: "pointer" }}
+              />
+            )}
+          </div>
+          {errors.password && (
+            <p role="alert" className="text-danger mb-0">
+              {errors.password?.message?.toString()}
+            </p>
           )}
         </div>
         <div className="d-grid gap-2">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import TableAccountsComponent from "./components/TableAccountsComponent";
 import { Plus } from "react-bootstrap-icons";
 import AccountModalComponent from "../../components/Modals/AccountModalComponent";

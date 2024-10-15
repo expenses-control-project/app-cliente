@@ -1,10 +1,19 @@
 import { useState } from "react";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import { BoxArrowRight, GearWideConnected, Person } from "react-bootstrap-icons";
+import { removeItem } from "../../../../utils/localStoreMethods";
+import { useNavigate } from "react-router-dom";
 
 function AccountPopperComponent() {
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+  
   const handleToggle = () => setShow(!show);
+  
+  const logout = () => {
+    removeItem('token');
+    navigate('/users/login');
+  }
   const Popper = (
     <Popover id="account-popper" className="mt-2">
       <Popover.Header as="h3">Cuenta</Popover.Header>
@@ -20,7 +29,7 @@ function AccountPopperComponent() {
           </li>
           <li className="link-hover border-top d-flex py-2 px-2 gap-2 text-danger">
             <BoxArrowRight size={20} />
-            <a href="/logout" className="nav-link " style={{width: "100%"}}>Cerrar Sesión</a>
+            <button onClick={logout} className="nav-link " style={{width: "100%"}}>Cerrar Sesión</button>
           </li>
         </ul>
       </Popover.Body>

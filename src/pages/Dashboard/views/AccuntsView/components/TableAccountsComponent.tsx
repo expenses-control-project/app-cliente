@@ -54,7 +54,7 @@ function TableAccountsComponent({ data }: TableAccountsProps) {
         <tbody>
           {data.length === 0 ? (
             <tr>
-              <td colSpan={4} className="text-center">
+              <td colSpan={5} className="text-center">
                 No hay cuentas
               </td>
             </tr>
