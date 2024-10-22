@@ -11,7 +11,7 @@ function BottomNavbar() {
   return (
     <nav
       className="d-lg-none bg-body-secondary border-top"
-      style={{ width: "100%", position: "sticky", bottom: 0 }}
+      style={{ width: "100%", position: "fixed", bottom: 0 }}
     >
       <ul
         className="nav text-center"

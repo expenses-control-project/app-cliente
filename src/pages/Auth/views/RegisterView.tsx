@@ -24,7 +24,6 @@ function RegisterView() {
     register,
     handleSubmit,
     watch,
-    setValue,
     formState: { errors },
   } = useForm();
 
@@ -180,7 +179,7 @@ function RegisterView() {
           )}
         </div>
         {/** Contraseña */}
-        <div className="d-flex flex-column align-items-start ">
+        <div className="d-flex flex-column align-items-start mb-3">
           <div
             className="form-floating position-relative"
             style={{ width: "100%" }}
@@ -226,7 +225,7 @@ function RegisterView() {
             )}
           </div>
           {/** Visualización de errores */}
-          <p className="text-secondary fs-6" style={{ textAlign: "start", maxWidth: "35rem" }}>
+          <p className="text-secondary fs-6" style={{ textAlign: "start", maxWidth: "35rem", margin: 0 }}>
             La contraseña debe tener al menos 8 caracteres, incluyendo una letra
             mayúscula, una letra minúscula y un número{" "}
           </p>
@@ -237,9 +236,9 @@ function RegisterView() {
           )}
         </div>
         {/** Repetir contraseña */}
-        <div className="d-flex flex-column align-items-start">
+        <div className="d-flex flex-column align-items-start mb-3">
           <div
-            className="form-floating mb-3 position-relative"
+            className="form-floating position-relative"
             style={{ width: "100%" }}
           >
             <input

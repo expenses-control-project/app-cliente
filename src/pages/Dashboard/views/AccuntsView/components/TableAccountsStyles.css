@@ -1,0 +1,41 @@
+/* Estilo para dispositivos móviles */
+@media (max-width: 767px) {
+  table {
+    display: block;
+  }
+
+  thead {
+    display: none; /* Ocultamos el encabezado en móviles */
+  }
+
+  tbody {
+    display: block;
+  }
+
+  tr {
+    display: block;
+    margin-bottom: 1rem; 
+    border-radius: 8px;
+  }
+
+  td {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  td:last-child {
+    border-bottom: none; 
+  }
+}
+
+
+.cuenta-item {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid darkgray;
+}
+
+.cuenta-item:last-child {
+  border-bottom: 0px;
+}

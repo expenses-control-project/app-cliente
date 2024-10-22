@@ -13,8 +13,8 @@ function AuthPage() {
   return (
     <Suspense fallback={<LoaderComponent />}>
       <ContainerViewAuth
-        className="d-flex flex-column align-items-center "
-        style={{ background: "#0F172A", height: "100vh"}}
+        className="d-flex flex-column align-items-center"
+        
       >
         <nav
           className="d-flex justify-content-center pt-5 rounded-5 rounded-top-0"

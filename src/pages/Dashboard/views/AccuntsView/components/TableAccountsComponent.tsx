@@ -1,84 +1,146 @@
-import { Button, Card } from "react-bootstrap";
-import { Table } from "react-bootstrap";
+import "./TableAccountsStyles.css";
+
+import { Card, Table } from "react-bootstrap";
 import {
-  Bank,
   Bank2,
   Cash,
-  Pencil,
   PencilFill,
   TrashFill,
   Wallet2,
 } from "react-bootstrap-icons";
+import { formatCurrency } from "../../../../../utils/formatterValue.util";
+import { Dispatch, SetStateAction } from "react";
 
 interface TableAccountsProps {
   data: any;
+  setRow: Dispatch<SetStateAction<null>>;
+  handleOpen: (title: string) => void;
+  handleDelete: (id: number) => void;
 }
 
 interface IconTipoTableProps {
   tipoCuenta: number;
+  size: number;
 }
 
-function IconTipoTable({ tipoCuenta }: IconTipoTableProps) {
+function IconTipoTable({ tipoCuenta, size }: IconTipoTableProps) {
   switch (tipoCuenta) {
     case 1:
-      return <Cash size={30} />;
+      return <Cash size={size} />;
     case 2:
-      return <Bank2 size={30} />;
+      return <Bank2 size={size} />;
     case 3:
-      return <Wallet2 size={30} />;
+      return <Wallet2 size={size} />;
   }
 }
 
-function TableAccountsComponent({ data }: TableAccountsProps) {
-  const handleEdit = (id: number) => {
-    console.log(`Editando elemento con ID: ${id}`);
-  };
-
-  // Función para manejar la acción de eliminar
-  const handleDelete = (id: number) => {
-    console.log(`Eliminando elemento con ID: ${id}`);
-  };
-
+function TableAccountsComponent({
+  data,
+  setRow,
+  handleOpen,
+  handleDelete
+}: TableAccountsProps) {
   return (
-    <Card>
-      <Table striped hover borderless={true} responsive className="caption-top">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Saldo</th>
-            <th>Tipo</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.length === 0 ? (
+    <>
+      <Card className="d-none d-md-table" style={{ width: "100%" }}>
+        <Table
+          striped
+          hover
+          borderless={true}
+          responsive
+          className="caption-top"
+        >
+          <thead>
             <tr>
-              <td colSpan={5} className="text-center">
-                No hay cuentas
-              </td>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Saldo</th>
+              <th>Tipo</th>
+              <th>Acciones</th>
             </tr>
-          ) : (
-            data.map((item: any, index: number) => (
-              <tr key={index}>
-                <td>{item.nombre}</td>
-                <td>{item.descripcion}</td>
-                <td>$ {item.saldo}</td>
-                <td>
-                  <IconTipoTable tipoCuenta={item.tipoCuenta} />
-                </td>
-                <td>
-                  <div className="d-flex flex-row gap-4">
-                    <PencilFill className="bg-warning p-1 rounded-circle text-black btn" size={25} />
-                    <TrashFill className="bg-danger p-1 rounded-circle btn" size={25} />
-                  </div>
+          </thead>
+          <tbody>
+            {data.length === 0 ? (
+              <tr>
+                <td colSpan={5} className="text-center">
+                  No hay cuentas
                 </td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </Table>
-    </Card>
+            ) : (
+              data.map((item: any, index: number) => (
+                <tr key={index}>
+                  <td data-label="Nombre">{item.nombre}</td>
+                  <td data-label="Descripción">{item.descripcion}</td>
+                  <td data-label="Saldo">{formatCurrency(item.saldo)}</td>
+                  <td data-label="Tipo">
+                    <IconTipoTable size={30} tipoCuenta={item.tipoCuenta} />
+                  </td>
+                  <td data-label="Acciones">
+                    <div className="d-flex flex-row gap-4">
+                      <PencilFill
+                        className="bg-warning p-1 rounded-circle text-black btn"
+                        size={25}
+                        onClick={() => {
+                          setRow(item);
+                          handleOpen("Editar Cuenta");
+                        }}
+                      />
+                      <TrashFill
+                        className="bg-danger p-1 rounded-circle btn"
+                        size={25}
+                        onClick={() => {
+                          handleDelete(item.idCuenta);
+                        }}
+                      />
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </Table>
+      </Card>
+      <div className="d-md-none cuentas">
+        {data.map((item: any, index: number) => (
+          <div
+            className="d-flex flex-column gap-2 mb-3 cuenta-item"
+            key={index}
+          >
+            <div>
+              <IconTipoTable size={40} tipoCuenta={item.tipoCuenta} />
+            </div>
+            <div className="d-flex flex-column" style={{ width: "100%" }}>
+              <div>
+                <h2 className="fs-4 m-0">{item.nombre}</h2>
+                <p className="fs-6 m-0 mb-2">{item.descripcion}</p>
+                <h3 className="fs-2">{formatCurrency(item.saldo)}</h3>
+              </div>
+              <div className="d-flex flex-row justify-content-between gap-2">
+                <button
+                  className="btn btn-warning rounded-pill"
+                  style={{ width: "100%" }}
+                  onClick={() => {
+                    setRow(item);
+                    handleOpen("Editar Cuenta");
+                  }}
+                >
+                  <PencilFill className="text-black" size={20} />
+                </button>
+                <button
+                  className="btn btn-danger rounded-pill"
+                  style={{ width: "100%" }}
+                  onClick={() => {
+                    handleDelete(item.idCuenta);
+                  }}
+                >
+                  <TrashFill size={20} />
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 

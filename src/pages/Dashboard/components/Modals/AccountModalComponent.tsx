@@ -6,6 +6,7 @@ import {
   patchAccountRequest,
   postAccountRequest,
 } from "../../../../services/accounts.service";
+import { useEffect } from "react";
 
 interface AccountModalProps {
   title: string;
@@ -18,12 +19,37 @@ interface AccountModalProps {
 function AccountModalComponent({
   title,
   show,
-  row,
+  row = null,
   handleClose,
   handleGetAccounts,
 }: AccountModalProps) {
   const { callEndpoint } = useFetchAndLoad();
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, reset, handleSubmit, setValue } = useForm({
+    defaultValues: {
+      nombre: '',
+      saldo: '',
+      descripcion: '',
+      tipoCuenta: '0'
+    }
+  });
+
+  useEffect(() => {
+    if (row) {
+      reset({
+        nombre: row.nombre || '',
+        saldo: row.saldo || '',
+        descripcion: row.descripcion || '',
+        tipoCuenta : row.tipoCuenta || '0'
+      })
+    } else {
+      reset({
+        nombre: '',
+        saldo: '',
+        descripcion: '',
+        tipoCuenta: '0'
+      })
+    }
+  }, [row, reset]);
 
   const onSubmit = handleSubmit(async (data: any) => {
     try {
@@ -41,6 +67,7 @@ function AccountModalComponent({
       setValue("saldo", "");
       setValue("descripcion", "");
       setValue("tipoCuenta", "0");
+      handleClose()
     } catch (error) {
       console.error(error);
     }
@@ -100,7 +127,7 @@ function AccountModalComponent({
                 aria-label="Floating label select example"
                 {...register("tipoCuenta")}
               >
-                <option>Seleccionar un tipo</option>
+                <option value="0">Seleccionar un tipo</option>
                 <option value="1">En efectivo</option>
                 <option value="2">Bancaria</option>
                 <option value="3">Billetera virtual</option>

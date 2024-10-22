@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import EstablishmentsModalComponent from "../../components/Modals/EstablishmentsModalComponent";
 import {
-  Pen,
   PencilFill,
-  PenFill,
-  Search,
   Trash3Fill,
 } from "react-bootstrap-icons";
 import { MdAdd } from "react-icons/md";
@@ -78,7 +75,7 @@ function EstablishmentsView() {
   };
 
   return (
-    <section className="px-5 py-4">
+    <section className="px-2 py-2 px-sm-5 py-sm-4">
       <div className="card ">
         <div className="card-header bg-body-secondary d-flex flex-row justify-content-between align-items-center gap-3">
           <h2 className="fs-5">Lista de locales</h2>

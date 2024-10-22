@@ -1,16 +1,18 @@
 import { ArrowBarDown, ArrowBarUp } from "react-bootstrap-icons";
+import { formatCurrency } from "../../../../../../utils/formatterValue.util";
 
 interface BalanceProps {
   handleShowExpenses: (title: string) => void,
   handleShowRevenues: (title: string) => void,
+  saldoTotal: number
 }
 
-function BalanceComponent({handleShowExpenses, handleShowRevenues}: BalanceProps) {
+function BalanceComponent({saldoTotal, handleShowExpenses, handleShowRevenues}: BalanceProps) {
   return (
-    <article>
+    <article className="pe-3">
       <div>
         <h4 className="fs-5">Saldo disponible</h4>
-        <h2 className="fs-2">$300.000</h2>
+        <h2 className="fs-2">{formatCurrency(saldoTotal)}</h2>
       </div>
       <div className=" d-grid d-sm-flex flex-column flex-sm-row gap-2 mt-2">
         <button className="btn btn-primary btn-lg d-flex align-items-center justify-content-center gap-2 rounded-pill" 

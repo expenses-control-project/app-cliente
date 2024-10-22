@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import TableAccountsComponent from "./components/TableAccountsComponent";
 import { Plus } from "react-bootstrap-icons";
 import AccountModalComponent from "../../components/Modals/AccountModalComponent";
-import { getAccountsRequest } from "../../../../services/accounts.service";
+import { deleteAccountRequest, getAccountsRequest } from "../../../../services/accounts.service";
 import useFetchAndLoad from "../../../../hooks/useFetchAndLoad";
+import Swal from "sweetalert2";
 
 function AccountsView() {
   const [showModalAccount, setShowModalAccount] = useState(false);
@@ -11,7 +12,7 @@ function AccountsView() {
 
   const [account, setAccount] = useState([]);
   const [row, setRow] = useState(null);
-  const { loading, callEndpoint } = useFetchAndLoad();
+  const { callEndpoint } = useFetchAndLoad();
 
   const handleOpenModalAccount = (title: string) => {
     setShowModalAccount(true);
@@ -32,19 +33,53 @@ function AccountsView() {
     }
   };
 
+  const handleDelete = async (id: number) => {
+    try {
+      Swal.fire({
+        title: "Estas seguro",
+        text: "No podrás revertirlo!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, ¡eliminalo!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await callEndpoint(deleteAccountRequest(id));
+          getAccounts();
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getAccounts();
   }, []);
   return (
     <section className="p-4">
-      <div className="pb-4 d-flex justify-content-center">
-        <button className="btn btn-success rounded-pill d-flex gap-1 align-items-center" onClick={() => {
-          handleOpenModalAccount("Crear Cuenta")
-        }}>
-          <Plus size={20} /> AGREGAR CUENTA
+      <div
+        className="pb-4 d-flex justify-content-center mb-5 mb-md-0"
+        style={{ position: "fixed", bottom: "0", right: "1rem" }}
+      >
+        <button
+          className="btn btn-success rounded-pill d-flex align-items-center"
+          style={{ width: "3rem", height: "3rem" }}
+          onClick={() => {
+            setRow(null);
+            handleOpenModalAccount("Crear Cuenta");
+          }}
+        >
+          <Plus size={40} />
         </button>
       </div>
-      <TableAccountsComponent data={account} />
+      <TableAccountsComponent
+        data={account}
+        handleOpen={handleOpenModalAccount}
+        handleDelete={handleDelete}
+        setRow={setRow}
+      />
       <AccountModalComponent
         title={title}
         show={showModalAccount}

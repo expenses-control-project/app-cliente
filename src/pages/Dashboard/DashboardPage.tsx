@@ -13,9 +13,9 @@ const MovementsView = lazy(() => import("./views/Movements/MovementsView"));
 
 function DashboardPage() {
   return (
-    <main className="d-flex flex-row " style={{ width: "100%"}}>
+    <main className="d-flex flex-column flex-sm-row" style={{height: "100vh"}}>
       <SidebarComponent />
-      <div className="d-fex flex-column " style={{ width: "100%", height: "100%"  }}>
+      <div className="d-fex flex-column " style={{ width: "100%"}}>
         <TopNavbarComponent />
         <Suspense fallback={<LoaderComponent />}>
           <Routes>
@@ -26,8 +26,8 @@ function DashboardPage() {
             <Route path="/*" element={<Navigate to="/dashboard/inicio" />} />
           </Routes>
         </Suspense>
-        <BottomNavbar />
       </div>
+      <BottomNavbar />
     </main>
   );
 }

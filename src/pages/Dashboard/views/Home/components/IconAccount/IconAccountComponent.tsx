@@ -1,5 +1,3 @@
-import React from "react";
-
 interface IconAccountProps {
   tipoCuenta: number;
 }
@@ -9,8 +7,8 @@ function IconAccountComponent({ tipoCuenta }: IconAccountProps) {
     case 1:
       return (
         <div
-          className="me-5 pb-3 d-flex align-items-end"
-          style={{ height: "100%" }}
+          className="me-5 pb-3 align-items-end"
+          style={{position: "absolute", bottom: 0, right: 0, width: "auto"}}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +96,7 @@ function IconAccountComponent({ tipoCuenta }: IconAccountProps) {
       return (
         <div
           className="me-5 pb-3 d-flex align-items-end"
-          style={{ height: "100%" }}
+          style={{position: "absolute", bottom: 0, right: 0, width: "auto"}}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +146,7 @@ function IconAccountComponent({ tipoCuenta }: IconAccountProps) {
       return (
         <div
           className="me-5 pb-3 d-flex align-items-end"
-          style={{ height: "100%" }}
+          style={{position: "absolute", bottom: 0, right: 0, width: "auto"}}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

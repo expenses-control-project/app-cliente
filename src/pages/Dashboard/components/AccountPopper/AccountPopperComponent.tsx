@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { OverlayTrigger, Popover } from "react-bootstrap";
-import { BoxArrowRight, GearWideConnected, Person } from "react-bootstrap-icons";
+import { BoxArrowRight, Person } from "react-bootstrap-icons";
 import { removeItem } from "../../../../utils/localStoreMethods";
 import { useNavigate } from "react-router-dom";
 
@@ -22,10 +22,6 @@ function AccountPopperComponent() {
           <li className="link-hover d-flex gap-2 p-2" >
             <Person size={20}/>
             <a href="/profile" className="nav-link " style={{width: "100%"}}>Perfil</a>
-          </li>
-          <li className="link-hover d-flex gap-2 p-2">
-            <GearWideConnected size={20} />
-            <a href="/settings" className="nav-link" style={{width: "100%"}}>Ajustes</a>
           </li>
           <li className="link-hover border-top d-flex py-2 px-2 gap-2 text-danger">
             <BoxArrowRight size={20} />

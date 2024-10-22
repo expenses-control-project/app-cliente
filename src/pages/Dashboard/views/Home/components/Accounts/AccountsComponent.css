@@ -1,55 +1,105 @@
+/* Contenedor principal */
+.scroll-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
 .account-cash {
-    background: radial-gradient(90% 100% at 50.14% 0%, #18c574 1.26%, #0E3F28 100%);
-    width: 30rem;
-    max-width: 30rem;
-    height: 10rem;
-    padding-left: 2rem;
-    padding-top: 0.5rem;
-    border-radius: 1rem;
-    position: relative;
-    cursor: pointer;
-    border: 0.15rem solid #18c574;
+  background: radial-gradient(
+    90% 100% at 50.14% 0%,
+    #18c574 1.26%,
+    #0e3f28 100%
+  );
+  height: 10rem;
+  width: 100%;
+  padding-left: 2rem;
+  padding-top: 0.5rem;
+  border-radius: 1rem;
+  position: relative;
+  cursor: pointer;
+  border: 0.15rem solid #18c574;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .account-banck {
-    background: radial-gradient(90% 100% at 50.14% 0%, #934400 1.26%, #3D1C00 100%);
-    width: 30rem;
-    max-width: 30rem;
-    height: 10rem;
-    padding-left: 2rem;
-    padding-top: 0.5rem;
-    border-radius: 1rem;
-    position: relative;
-    cursor: pointer;
-    border: 0.15rem solid #934400;
+  background: radial-gradient(
+    90% 100% at 50.14% 0%,
+    #934400 1.26%,
+    #3d1c00 100%
+  );
+  height: 10rem;
+  width: 100%;
+  padding-left: 2rem;
+  padding-top: 0.5rem;
+  border-radius: 1rem;
+  position: relative;
+  cursor: pointer;
+  border: 0.15rem solid #934400;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
-.account-wallet {    
-    background: radial-gradient(90% 100% at 50.14% 0%, #00d3eb  1.26%, #002327 100%);
-    width: 30rem;
-    max-width: 30rem;
-    height: 10rem;
-    padding-left: 2rem;
-    padding-top: 0.5rem;
-    border-radius: 1rem;
-    position: relative;
-    cursor: pointer;
-    border: 0.15rem solid #00d3eb;
+.account-wallet {
+  background: radial-gradient(
+    90% 100% at 50.14% 0%,
+    #00d3eb 1.26%,
+    #002327 100%
+  );
+  height: 10rem;
+  width: 100%;
+  padding-left: 2rem;
+  padding-top: 0.5rem;
+  border-radius: 1rem;
+  position: relative;
+  cursor: pointer;
+  border: 0.15rem solid #00d3eb;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .scroll-container {
+        grid-template-columns: auto auto;
+    }
 }
 
 @media screen and (max-width: 991px) {
-    .account-cash {
-        width: 100%;
-        max-width: 100%;
-    }
+  .scroll-container {
+    display: flex;
+    overflow: auto;
+    scroll-snap-type: x proximity;
+    cursor: grab;
+  }
 
-    .account-banck {
-        width: 100%;
-        max-width: 100%;
-    }
+  .scroll-container:last-child {
+    padding-right: 3rem;
+  }
+  .scroll-container.active {
+    cursor: grabbing;
+  }
 
-    .account-wallet {
-        width: 100%;
-        max-width: 100%;
-    }
+  .account-cash div {
+    width: 20rem;
+    max-width: 20rem;
+  }
+
+  .account-banck div{
+    width: 20rem;
+    max-width: 20rem;
+  }
+
+  .account-wallet div{
+    width: 20rem;
+    max-width: 20rem;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .scroll-container:last-child {
+    padding-right: 1rem;
+  }
 }

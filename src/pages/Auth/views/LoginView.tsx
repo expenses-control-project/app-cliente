@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   ArrowRight,
-  EnvelopeFill,
   EyeFill,
   EyeSlashFill,
 } from "react-bootstrap-icons";
@@ -42,7 +41,7 @@ function LoginView() {
   });
 
   return (
-    <section className="text-center px-4">
+    <section className="text-center px-4" style={{height: "100%"}}>
       <h1 className="fs-1">Iniciar Sesión</h1>
       <p>Por favor ingrese sus credenciales para acceder al sistema</p>
       <form onSubmit={onSubmit}>
@@ -56,6 +55,11 @@ function LoginView() {
               {...register("usuario", {
                 required: "Se necesita un nombre de usuario o email",
               })}
+              style={{
+
+                borderTopRightRadius: "1.4rem",
+                borderTopLeftRadius: "1.4rem",
+              }}
             />
             <label form="floatingInputEmailOrUserName">Nombre de usuario o Email</label>
           </div>
