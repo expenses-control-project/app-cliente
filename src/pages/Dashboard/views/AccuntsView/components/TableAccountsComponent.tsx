@@ -42,7 +42,7 @@ function TableAccountsComponent({
 }: TableAccountsProps) {
   return (
     <>
-      <Card className="d-none d-md-table" style={{ width: "100%" }}>
+      <Card className="d-none d-lg-table" style={{ width: "100%" }}>
         <Table
           striped
           hover
@@ -100,7 +100,7 @@ function TableAccountsComponent({
           </tbody>
         </Table>
       </Card>
-      <div className="d-md-none cuentas">
+      <div className="d-lg-none cuentas">
         {data.map((item: any, index: number) => (
           <div
             className="d-flex flex-column gap-2 mb-3 cuenta-item"

@@ -1,16 +1,18 @@
 export const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(value);
-  };
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(value);
+};
 
-export function formatterTodayDate () {
-  const fecha_actual = new Date();
+export const formatDateToDDMMYY = (isoDate: string): string => {
+  const date = new Date(isoDate);
+  date.setDate(date.getDate() + 1);
+  
+  // Obtener día, mes y año
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0"); 
+  const year = String(date.getFullYear()).slice(-2);
 
-  const year = fecha_actual.getFullYear();
-  const month = String(fecha_actual.getMonth() + 1).padStart(2, '0');
-  const day = String(fecha_actual.getDate()).padStart(2, '0');
-
-  return `${year}-${month}-${day}`;
-}
+  return `${day}/${month}/${year}`;
+};

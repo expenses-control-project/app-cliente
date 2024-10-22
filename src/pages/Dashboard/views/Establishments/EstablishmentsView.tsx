@@ -102,7 +102,7 @@ function EstablishmentsView() {
                     >
                       <div>
                         <div>
-                          <IconsRubrosComponent idRubro={e.idRubro} />
+                          <IconsRubrosComponent bg={"bg-secondary"} idRubro={e.idRubro} />
                         </div>
                         <div>
                           <h4 className="fs-5 mb-0">

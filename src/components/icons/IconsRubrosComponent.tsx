@@ -6,30 +6,31 @@ import { MdOutlineAirplanemodeActive, MdRestaurant } from 'react-icons/md'
 
 interface IconsRubrosProps {
     idRubro: number
+    bg: string
 }
 
-function IconsRubrosComponent({idRubro}: IconsRubrosProps) {
+function IconsRubrosComponent({bg, idRubro}: IconsRubrosProps) {
     switch (idRubro) {
         case 1:
-            return <MdRestaurant className="bg-secondary rounded-circle p-2" size={40}/>
+            return <MdRestaurant className={`${bg} rounded-circle p-2`} size={40}/>
         case 2: 
-            return <GiClothes className="bg-secondary rounded-circle p-2" size={40}/>
+            return <GiClothes className={`${bg} rounded-circle p-2`} size={40}/>
         case 3:
-            return <IoIosLaptop className="bg-secondary  rounded-circle p-2" size={40}/>
+            return <IoIosLaptop className={`${bg} rounded-circle p-2`} size={40}/>
         case 4: 
-            return <FaHeartbeat className="bg-secondary  rounded-circle p-2" size={40}/>
+            return <FaHeartbeat className={`${bg} rounded-circle p-2`} size={40}/>
         case 5: 
-            return <FaHouseChimney className="bg-secondary  rounded-circle p-2" size={40}/>
+            return <FaHouseChimney className={`${bg} rounded-circle p-2`} size={40}/>
         case 6: 
-            return <FaBus className="bg-secondary  rounded-circle p-2" size={40}/>
+            return <FaBus className={`${bg} rounded-circle p-2`} size={40}/>
         case 7: 
-            return <FaPencilRuler className="bg-secondary  rounded-circle p-2" size={40}/>
+            return <FaPencilRuler className={`${bg} rounded-circle p-2`} size={40}/>
         case 8: 
-            return <FaCarSide className="bg-secondary  rounded-circle p-2" size={40}/>
+            return <FaCarSide className={`${bg} rounded-circle p-2`} size={40}/>
         case 9: 
-            return <FaRunning className="bg-secondary  rounded-circle p-2" size={40}/>
+            return <FaRunning className={`${bg} rounded-circle p-2`} size={40}/>
         case 10: 
-            return <MdOutlineAirplanemodeActive className="bg-secondary  rounded-circle p-2" size={40}/>
+            return <MdOutlineAirplanemodeActive className={`${bg} rounded-circle p-2`} size={40}/>
     }
 }
 

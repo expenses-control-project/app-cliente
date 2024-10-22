@@ -98,10 +98,11 @@ function AccountModalComponent({
               />
             </FloatingLabel>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+          {row == null && (
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
             <FloatingLabel
               controlId="floatingInput"
-              label="Saldo"
+              label="Saldo Inicial"
               className="mb-3"
             >
               <Form.Control
@@ -111,6 +112,7 @@ function AccountModalComponent({
               />
             </FloatingLabel>
           </Form.Group>
+          )}
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
             <FloatingLabel controlId="floatingTextarea2" label="Descripción">
               <Form.Control

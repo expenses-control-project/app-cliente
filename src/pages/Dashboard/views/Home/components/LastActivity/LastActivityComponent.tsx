@@ -5,38 +5,22 @@ import useFetchAndLoad from "../../../../../../hooks/useFetchAndLoad";
 import { useEffect, useState } from "react";
 import { getRevenuesRequest } from "../../../../../../services/revenues.service";
 import { getExpensesRequest } from "../../../../../../services/expenses.service";
+import { Spinner } from "react-bootstrap";
+import { ArrowUpCircle } from "react-bootstrap-icons";
+import {
+  formatCurrency,
+  formatDateToDDMMYY,
+} from "../../../../../../utils/formatterValue.util";
+import IconsRubrosComponent from "../../../../../../components/icons/IconsRubrosComponent";
 
-function LastActivityComponent() {
+interface LastActivityProps {
+  loading: boolean,
+  activity: any
+}
 
-  const [activity, setActivity] = useState<any | null>();
-
-  const { loading, callEndpoint } = useFetchAndLoad();
-
-  const getAllActivity = async () => {
-    const res_revenues = await callEndpoint(getRevenuesRequest());
-    const res_data = res_revenues?.data.ingreso;
-    const data_revenues = res_data.map((item: any) => ({
-      ...item,
-      flag: "ingreso"
-    }));
-    
-    const res_expenses = await callEndpoint(getExpensesRequest());
-    const res_data2 = res_expenses?.data.gasto;
-    const data_expenses = res_data2.map((item: any) => ({
-      ...item,
-      flag: 'gasto'
-    })); 
-
-    const result = [...data_revenues, ...data_expenses];
-    setActivity(result);
-  }
-
-  useEffect(() => {
-    getAllActivity();
-  }, []);
-
+function LastActivityComponent({activity, loading}: LastActivityProps) {
   return (
-    <div className="mt-4 pe-3">
+    <div className="mt-4 pe-3 pe-md-5 pe-lg-0">
       <div className="d-flex flex-row justify-content-between">
         <h4 className="fs-5">Mi actividad</h4>
         <Link
@@ -46,19 +30,81 @@ function LastActivityComponent() {
           Ver más
         </Link>
       </div>
-      <div className="card mb-5">
-        <div className="card-body d-flex flex-column justify-content-center align-items-center">
-          <h4 className="fs-5 m-0  text-center">
-            Sin actividades por el momento
-          </h4>
-          <p className="fs-6 m-0 text-center">
-            Esos gastos no se controlan solos 😎
-          </p>
-          <Lottie
-            animationData={waiting_activity}
-            style={{ maxWidth: "100%", height: "15rem" }}
-          />
-        </div>
+      <div className="card mb-5 gap-2 px-2 py-2">
+        {loading ? (
+          <Spinner />
+        ) : (
+          <>
+            {activity != null ? (
+              <>
+                {activity.map((item: any, index: number) => (
+                  <div
+                    key={index}
+                    className="d-flex flex-row justify-content-between align-items-center"
+                  >
+                    {item.flag == "ingreso" ? (
+                      <>
+                        <div className="d-flex gap-2">
+                          <div>
+                            <ArrowUpCircle
+                              className="bg-success rounded-circle p-2"
+                              size={40}
+                            />
+                          </div>
+                          <div>
+                            <h4 className="fs-5 mb-0">{item.cuenta.nombre}</h4>
+                            <p className="mb-0 text fs-6 text-body-secondary">
+                              Ingreso
+                            </p>
+                          </div>
+                        </div>
+                        <div className="d-flex flex-column align-items-end">
+                          <span className="text-success">
+                            +{formatCurrency(item.saldo)}
+                          </span>
+                          <span>{formatDateToDDMMYY(item.fecha)}</span>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="d-flex gap-2">
+                          <div>
+                            <IconsRubrosComponent bg="bg-danger" idRubro={item.establecimiento.rubro.idRubro}/>
+                          </div>
+                          <div>
+                            <h4 className="fs-5 mb-0">{item.establecimiento.nombreEstablecimiento}</h4>
+                            <p className="mb-0 text fs-6 text-body-secondary">
+                              {item.establecimiento.rubro.nombreRubro}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="d-flex flex-column align-items-end">
+                          <span className="text-danger">
+                            -{formatCurrency(item.monto)}
+                          </span>
+                          <span>{formatDateToDDMMYY(item.fecha)}</span>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ))}
+              </>
+            ) : (
+              <>
+                <h4 className="fs-5 m-0  text-center">
+                  Sin actividades por el momento
+                </h4>
+                <p className="fs-6 m-0 text-center">
+                  Esos gastos no se controlan solos 😎
+                </p>
+                <Lottie
+                  animationData={waiting_activity}
+                  style={{ maxWidth: "100%", height: "15rem" }}
+                />
+              </>
+            )}
+          </>
+        )}
       </div>
     </div>
   );

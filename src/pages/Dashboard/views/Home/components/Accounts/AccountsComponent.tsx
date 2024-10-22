@@ -11,7 +11,7 @@ interface AccountsProps {
 function AccountsComponent({ accounts }: AccountsProps) {
   return (
     <article className="d-flex flex-column mt-4">
-      <div className="d-flex flex-row justify-content-between pe-3">
+      <div className="d-flex flex-row justify-content-between pe-3 pe-sm-5">
         <h1 className="fs-5">Cuentas</h1>
         <Link
           to="/dashboard/cuentas"

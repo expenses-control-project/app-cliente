@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
-import { AxiosResponse, AxiosError } from 'axios';
+import { useState, useEffect, useRef } from "react";
+import { AxiosResponse, AxiosError } from "axios";
+import { removeItem } from "../utils/localStoreMethods";
 
 interface AxiosCall<T> {
   call: Promise<AxiosResponse<T>>;
@@ -26,8 +27,10 @@ const useFetchAndLoad = () => {
       const result = await axiosCall.call;
       return result;
     } catch (err: any) {
-      if (err instanceof AxiosError && err.name === 'CanceledError') {
+      if (err instanceof AxiosError && err.name === "CanceledError") {
         console.log(`Request canceled due to: ${cancelReason}`);
+      } else if (err.response?.status === 401) {
+        removeItem("token");
       } else {
         throw err;
       }
@@ -36,7 +39,7 @@ const useFetchAndLoad = () => {
     }
   };
 
-  const cancelEndpoint = (reason: string = 'Request canceled by user') => {
+  const cancelEndpoint = (reason: string = "Request canceled by user") => {
     if (controllerRef.current) {
       setCancelReason(reason); // Establecer la razón de la cancelación
       controllerRef.current.abort();
@@ -47,7 +50,7 @@ const useFetchAndLoad = () => {
   useEffect(() => {
     // Cancelar la solicitud cuando el componente se desmonta
     return () => {
-      cancelEndpoint('Component unmounted');
+      cancelEndpoint("Component unmounted");
     };
   }, []);
 

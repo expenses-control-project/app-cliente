@@ -60,7 +60,7 @@ function AccountsView() {
   return (
     <section className="p-4">
       <div
-        className="pb-4 d-flex justify-content-center mb-5 mb-md-0"
+        className="pb-4 d-flex justify-content-center mb-5 mb-lg-0"
         style={{ position: "fixed", bottom: "0", right: "1rem" }}
       >
         <button

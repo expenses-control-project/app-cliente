@@ -12,6 +12,7 @@ interface ExpensesModalProps {
   accounts: object[];
   handleClose: () => void;
   getAccounts: () => void;
+  getAllActivity: () => void;
 }
 
 function ExpensesModalComponent({
@@ -20,6 +21,7 @@ function ExpensesModalComponent({
   accounts,
   handleClose,
   getAccounts,
+  getAllActivity
 }: ExpensesModalProps) {
   const [establishments, setEstablishments] = useState([]);
   const [text, setText] = useState("");
@@ -77,6 +79,7 @@ function ExpensesModalComponent({
         getAccounts();
         handleClose();
         handleShowToast();
+        getAllActivity();
         reset({
           monto: "",
           descripcion: "",

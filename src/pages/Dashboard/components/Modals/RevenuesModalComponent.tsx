@@ -11,6 +11,7 @@ interface RevenuesModalProps {
   cuentas: object[];
   handleClose: () => void;
   getAccounts: () => void;
+  getAllActivity: () => void;
 }
 
 function RevenuesModalComponent({
@@ -19,6 +20,7 @@ function RevenuesModalComponent({
   cuentas,
   handleClose,
   getAccounts,
+  getAllActivitys
 }: RevenuesModalProps) {
   const [text, setText] = useState("");
   const [showToast, setShowToast] = useState(false);
@@ -54,6 +56,7 @@ function RevenuesModalComponent({
       const res = await callEndpoint(postRevenueRequest(data));
       if (res?.data.statusCode == 201) {
         getAccounts();
+        getAllActivity();
         handleClose();
         handleShowToast();
         reset({

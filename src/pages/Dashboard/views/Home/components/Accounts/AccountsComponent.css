@@ -61,13 +61,13 @@
   -ms-user-select: none;
 }
 
-@media screen and (max-width: 1024px) {
-    .scroll-container {
-        grid-template-columns: auto auto;
-    }
+@media screen and (max-width: 1400px) {
+  .scroll-container {
+      grid-template-columns: auto auto;
+  }
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 992px) {
   .scroll-container {
     display: flex;
     overflow: auto;

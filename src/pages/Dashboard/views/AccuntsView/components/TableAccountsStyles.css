@@ -1,5 +1,5 @@
 /* Estilo para dispositivos móviles */
-@media (max-width: 767px) {
+@media (max-width: 992px) {
   table {
     display: block;
   }

@@ -11,6 +11,8 @@ import Lottie from "lottie-react";
 import welcome_animation from "../../../../assets/lottie/welcome.json";
 import { Link } from "react-router-dom";
 import LastActivityComponent from "./components/LastActivity/LastActivityComponent";
+import { getRevenuesRequest } from "../../../../services/revenues.service";
+import { getExpensesRequest } from "../../../../services/expenses.service";
 
 function HomeView() {
   const [showModalExpenses, setShowModalExpenses] = useState(false);
@@ -18,9 +20,10 @@ function HomeView() {
   const [title, setTitle] = useState("");
   const [account, setAccount] = useState([]);
   const [totalSaldo, setTotalSaldo] = useState(0);
+  const [activity, setActivity] = useState<any | null>();
 
   const { loading, callEndpoint } = useFetchAndLoad();
-  
+
   // Modals
   const handleOpenModalExpenses = (title: string) => {
     setShowModalExpenses(true);
@@ -57,8 +60,35 @@ function HomeView() {
     return total;
   }
 
+  // Obtenemos un resumen de nuestras actividades
+  const getAllActivity = async () => {
+    const res_revenues = await callEndpoint(getRevenuesRequest());
+    const res_data = res_revenues?.data.ingreso;
+    const data_revenues = res_data.map((item: any) => ({
+      ...item,
+      flag: "ingreso",
+    }));
+
+    const res_expenses = await callEndpoint(getExpensesRequest());
+    const res_data2 = res_expenses?.data.gasto;
+    const data_expenses = res_data2.map((item: any) => ({
+      ...item,
+      flag: "gasto",
+    }));
+
+    const result = [...data_revenues, ...data_expenses];
+
+    const resultFIlterDate = result.sort((a, b) => {
+      return new Date(b.fecha).getTime() - new Date(a.fecha).getTime();
+    });
+
+    const resultLast3Items = resultFIlterDate.slice(0, 3);
+    setActivity(resultLast3Items);
+  };
+
   useEffect(() => {
     getAccounts();
+    getAllActivity();
   }, []);
 
   return (
@@ -75,7 +105,7 @@ function HomeView() {
                 handleShowRevenues={handleOpenModalRevenues}
               />
               <AccountsComponent accounts={account} />
-              <LastActivityComponent />
+              <LastActivityComponent loading={loading} activity={activity}/>
             </>
           ) : (
             <div className="d-flex flex-column align-items-center justify-content-center">
@@ -101,6 +131,7 @@ function HomeView() {
         show={showModalRevenues}
         handleClose={handleCloseModalRevenues}
         getAccounts={getAccounts}
+        getAllActivity={getAllActivity}
       />
       <ExpensesModalComponent
         title={title}
@@ -108,6 +139,7 @@ function HomeView() {
         accounts={account}
         handleClose={handleCloseModalExpenses}
         getAccounts={getAccounts}
+        getAllActivity={getAllActivity}
       />
     </section>
   );
