@@ -10,7 +10,7 @@ export const getAccountsRequest = () => {
   return {
     call: axios.get("/cuenta", {
       signal: controller.signal,
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {"expenses-control-jwt": `${token}` },
     }),
     controller,
   };
@@ -22,7 +22,7 @@ export const getAccountRequest = (id: number) => {
   return {
     call: axios.get(`/cuenta/${id}`, {
       signal: controller.signal,
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {"expenses-control-jwt": `${token}` },
     }),
     controller,
   };
@@ -34,7 +34,7 @@ export const postAccountRequest = (data: any) => {
   return {
     call: axios.post("/cuenta/", data, {
       signal: controller.signal,
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {"expenses-control-jwt": `${token}` },
     }),
     controller,
   };
@@ -46,7 +46,7 @@ export const patchAccountRequest = (data: any) => {
   return {
     call: axios.patch("/cuenta/", data, {
       signal: controller.signal,
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {"expenses-control-jwt": `${token}` },
     }),
     controller,
   };
@@ -58,7 +58,7 @@ export const deleteAccountRequest = (id: number) => {
   return {
     call: axios.delete(`/cuenta/${id}`, {
       signal: controller.signal,
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {"expenses-control-jwt": `${token}` },
     }),
     controller,
   };

@@ -8,7 +8,10 @@ export const getRubrosRequest = () => {
   const controller = loadAbort();
   const token = getItem("token");
   return {
-    call: axios.get("/rubro", { signal: controller.signal, headers: { Authorization: `Bearer ${token}` } }),
+    call: axios.get("/rubro", {
+      signal: controller.signal,
+      headers: {"expenses-control-jwt": `${token}` },
+    }),
     controller,
   };
 };

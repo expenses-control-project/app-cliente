@@ -10,7 +10,7 @@ export const getEstablishmentsRequest = () => {
   return {
     call: axios.get("/establecimiento", {
       signal: controller.signal,
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {"expenses-control-jwt": `${token}` },
     }),
     controller,
   };
@@ -22,7 +22,7 @@ export const getEstablishmentRequest = (id: number) => {
   return {
     call: axios.get(`/establecimiento/${id}`, {
       signal: controller.signal,
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {"expenses-control-jwt": `${token}` },
     }),
     controller,
   };
@@ -34,7 +34,7 @@ export const postEstablishmentRequest = (data: any) => {
   return {
     call: axios.post("/establecimiento/", data, {
       signal: controller.signal,
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {"expenses-control-jwt": `${token}` },
     }),
     controller,
   };
@@ -46,7 +46,7 @@ export const patchEstablishmentRequest = (data: any) => {
   return {
     call: axios.patch("/establecimiento/", data, {
       signal: controller.signal,
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {"expenses-control-jwt": `${token}` },
     }),
     controller,
   };
@@ -58,7 +58,7 @@ export const deleteEstablishmentRequest = (id: number) => {
   return {
     call: axios.delete(`/establecimiento/${id}`, {
       signal: controller.signal,
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {"expenses-control-jwt": `${token}` },
     }),
     controller,
   };

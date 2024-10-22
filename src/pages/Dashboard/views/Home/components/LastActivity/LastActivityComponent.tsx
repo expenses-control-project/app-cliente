@@ -1,91 +1,66 @@
-import {
-  ArrowRight,
-  ArrowUpCircle,
-} from "react-bootstrap-icons";
-import { FaRunning } from "react-icons/fa";
-import { FaBus } from "react-icons/fa6";
+import Lottie from "lottie-react";
+import waiting_activity from "../../../../../../assets/lottie/waiting_activity.json";
 import { Link } from "react-router-dom";
+import useFetchAndLoad from "../../../../../../hooks/useFetchAndLoad";
+import { useEffect, useState } from "react";
+import { getRevenuesRequest } from "../../../../../../services/revenues.service";
+import { getExpensesRequest } from "../../../../../../services/expenses.service";
 
 function LastActivityComponent() {
-  return (
-    <article className="mt-4">
-      <div
-        className="d-flex flex-row justify-content-between"
-        style={{ width: "100%" }}
-      >
-        <h1 className="fs-6">Tu última actividad</h1>
-      </div>
-      <div className="bg-body-secondary rounded mt-2">
-        <div className="d-flex gap-2 p-2 flex-row justify-content-between align-items-center">
-          <div className="d-flex gap-2">
-            <div>
-              <FaRunning className="bg-danger rounded-pill p-1" size={40} />
-            </div>
-            <div>
-              <h4 className="fs-5 mb-0">Porto GYM</h4>
-              <p className="mb-0 text fs-6 text-body-secondary">
-                Salud y Bienestar
-              </p>
-            </div>
-          </div>
-          <div
-            className="d-flex flex-column align-items-end"
-            style={{ width: "8rem" }}
-          >
-            <span className="text-danger">-$3.000,00</span>
-            <span>03/09</span>
-          </div>
-        </div>
-        <div className="d-flex gap-2 p-2 flex-row justify-content-between align-items-center">
-          <div className="d-flex gap-2">
-            <div>
-              <FaBus className="bg-danger rounded-pill p-2" size={40} />
-            </div>
-            <div>
-              <h4 className="fs-5 mb-0">SUBE</h4>
-              <p className="mb-0 text fs-6 text-body-secondary">
-                Transporte y Logística
-              </p>
-            </div>
-          </div>
-          <div
-            className="d-flex flex-column align-items-end"
-            style={{ width: "8rem" }}
-          >
-            <span className="text-danger">-$2.000,00</span>
-            <span>03/09</span>
-          </div>
-        </div>
-        <div className="d-flex gap-2 p-2 flex-row justify-content-between align-items-center">
-          <div className="d-flex gap-2">
-            <div>
-              <ArrowUpCircle
-                className="bg-success rounded-circle p-2"
-                size={40}
-              />
-            </div>
 
-            <div>
-              <h4 className="fs-5 mb-0">Efectivo</h4>
-              <p className="mb-0 text fs-6 text-body-secondary">Ingreso</p>
-            </div>
-          </div>
-          <div className="d-flex flex-column align-items-end">
-            <span className="text-success">+$10.000,00</span>
-            <span>03/09</span>
-          </div>
-        </div>
-        <div className="p-2 border-top">
-          <Link
-            to="/activida"
-            className="nav-link d-flex align-items-center justify-content-between"
-          >
-            Ver toda tu actividad
-            <ArrowRight />
-          </Link>
+  const [activity, setActivity] = useState<any | null>();
+
+  const { loading, callEndpoint } = useFetchAndLoad();
+
+  const getAllActivity = async () => {
+    const res_revenues = await callEndpoint(getRevenuesRequest());
+    const res_data = res_revenues?.data.ingreso;
+    const data_revenues = res_data.map((item: any) => ({
+      ...item,
+      flag: "ingreso"
+    }));
+    
+    const res_expenses = await callEndpoint(getExpensesRequest());
+    const res_data2 = res_expenses?.data.gasto;
+    const data_expenses = res_data2.map((item: any) => ({
+      ...item,
+      flag: 'gasto'
+    })); 
+
+    const result = [...data_revenues, ...data_expenses];
+    setActivity(result);
+  }
+
+  useEffect(() => {
+    getAllActivity();
+  }, []);
+
+  return (
+    <div className="mt-4 pe-3">
+      <div className="d-flex flex-row justify-content-between">
+        <h4 className="fs-5">Mi actividad</h4>
+        <Link
+          to="/dashboard/actividad"
+          className="link-offset-2 link-underline link-underline-opacity-0"
+        >
+          Ver más
+        </Link>
+      </div>
+      <div className="card mb-5">
+        <div className="card-body d-flex flex-column justify-content-center align-items-center">
+          <h4 className="fs-5 m-0  text-center">
+            Sin actividades por el momento
+          </h4>
+          <p className="fs-6 m-0 text-center">
+            Esos gastos no se controlan solos 😎
+          </p>
+          <Lottie
+            animationData={waiting_activity}
+            style={{ maxWidth: "100%", height: "15rem" }}
+          />
         </div>
       </div>
-    </article>
+    </div>
   );
 }
 
