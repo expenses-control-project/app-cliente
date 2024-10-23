@@ -62,21 +62,35 @@ function HomeView() {
 
   // Obtenemos un resumen de nuestras actividades
   const getAllActivity = async () => {
-    const res_revenues = await callEndpoint(getRevenuesRequest());
-    const res_data = res_revenues?.data.ingreso;
-    const data_revenues = res_data.map((item: any) => ({
-      ...item,
-      flag: "ingreso",
-    }));
+    let result: any[] = [];
+    let data_revenues: any[] = [];
+    let data_expenses: any[] = [];
 
-    const res_expenses = await callEndpoint(getExpensesRequest());
-    const res_data2 = res_expenses?.data.gasto;
-    const data_expenses = res_data2.map((item: any) => ({
-      ...item,
-      flag: "gasto",
-    }));
+    try {
+      const res_revenues = await callEndpoint(getRevenuesRequest());
+      const res_data = res_revenues?.data.ingreso;
+      data_revenues = res_data.map((item: any) => ({
+        ...item,
+        flag: "ingreso",
+      }));
+      result = [...data_revenues];
+    } catch (error: any) {
+      console.error(error.response?.data);
+      result = [];
+    }
 
-    const result = [...data_revenues, ...data_expenses];
+    try {
+      const res_expenses = await callEndpoint(getExpensesRequest());
+      const res_data2 = res_expenses?.data.gasto;
+      data_expenses = res_data2?.map((item: any) => ({
+        ...item,
+        flag: "gasto",
+      }));
+      result = [...data_revenues, ...data_expenses];
+    } catch (error: any) {
+      console.error(error.response?.data);
+      result = [...data_revenues];
+    }
 
     const resultFIlterDate = result.sort((a, b) => {
       return new Date(b.fecha).getTime() - new Date(a.fecha).getTime();
@@ -92,7 +106,7 @@ function HomeView() {
   }, []);
 
   return (
-    <section className="ps-3 pe-3 pe-sm-5 ps-sm-5 py-4 position-relative container-home" style={{height: "calc(100vh - 57px)"}}>
+    <section className="ps-3 pe-3 pe-sm-5 ps-sm-5 py-4 position-relative container-home">
       {loading ? (
         <LoaderComponent />
       ) : (

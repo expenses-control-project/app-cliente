@@ -105,7 +105,7 @@ function EstablishmentsModalComponent({
                     aria-label="Floating label select example"
                     {...register("rubroId")}
                   >
-                    <option selected={true}>Seleccionar un rubro</option>
+                    <option value="0">Seleccionar un rubro</option>
                     {rubros.map((m: any, index) => (
                       <option value={m.idRubro} key={index}>{m.nombreRubro}</option>
                     ))}

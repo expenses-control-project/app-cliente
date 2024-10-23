@@ -1,10 +1,5 @@
 import { Card, CardHeader, Table } from "react-bootstrap";
-import {
-  Bank2,
-  Cash,
-  PencilFill,
-  Wallet2,
-} from "react-bootstrap-icons";
+import { Bank2, Cash, PencilFill, Wallet2 } from "react-bootstrap-icons";
 import { formatCurrency } from "../../../../../utils/formatterValue.util";
 import { Dispatch, SetStateAction } from "react";
 import Lottie from "lottie-react";
@@ -38,10 +33,13 @@ function TableAccountsComponent({
   data,
   setRow,
   handleOpen,
-}: TableAccountsProps) {
+}: TableAccountsProps) {  
   return (
     <>
-      <div className="d-none d-lg-table" style={{ width: "100%", height: "100%" }}>
+      <div
+        className="d-none d-lg-table"
+        style={{ width: "100%", height: "100%" }}
+      >
         {data.length > 0 ? (
           <Card>
             <CardHeader className="d-flex align-items-center">
@@ -93,7 +91,6 @@ function TableAccountsComponent({
                     </td>
                   </tr>
                 ))}
-                )
               </tbody>
             </Table>
           </Card>
@@ -117,7 +114,7 @@ function TableAccountsComponent({
         )}
       </div>
       <div className="d-lg-none cuentas" style={{ height: "100%" }}>
-        {data.lenght > 0 ? (
+        {data.length > 0 ? (
           <>
             {data.map((item: any, index: number) => (
               <div
