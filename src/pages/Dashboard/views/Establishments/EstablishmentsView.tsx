@@ -103,7 +103,7 @@ function EstablishmentsView() {
                         />
                       </div>
                       <div>
-                        <h4 className="fs-5 mb-0">{e.nombreEstablecimiento}</h4>
+                        <h4 className="fs-5 mt-2 mb-0">{e.nombreEstablecimiento}</h4>
                         <p className="mb-0 text fs-6 text-body-secondary">
                           {e.rubro.nombreRubro}
                         </p>

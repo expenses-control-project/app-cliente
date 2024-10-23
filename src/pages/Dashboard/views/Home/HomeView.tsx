@@ -73,10 +73,8 @@ function HomeView() {
         ...item,
         flag: "ingreso",
       }));
-      result = [...data_revenues];
     } catch (error: any) {
       console.error(error.response?.data);
-      result = [];
     }
 
     try {
@@ -86,12 +84,13 @@ function HomeView() {
         ...item,
         flag: "gasto",
       }));
-      result = [...data_revenues, ...data_expenses];
     } catch (error: any) {
       console.error(error.response?.data);
-      result = [...data_revenues];
     }
 
+    result = [...data_revenues, ...data_expenses];
+    console.log(result);
+    
     const resultFIlterDate = result.sort((a, b) => {
       return new Date(b.fecha).getTime() - new Date(a.fecha).getTime();
     });

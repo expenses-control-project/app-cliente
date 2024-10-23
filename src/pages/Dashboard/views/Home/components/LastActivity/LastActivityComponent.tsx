@@ -66,6 +66,7 @@ function LastActivityComponent({activity, loading}: LastActivityProps) {
                           </div>
                           <div>
                             <h4 className="fs-5 mb-0">{item.establecimiento.nombreEstablecimiento}</h4>
+                            <h5 className="fs-6 m-0">{item.descripcion}</h5>
                             <p className="mb-0 text fs-6 text-body-secondary">
                               {item.establecimiento.rubro.nombreRubro}
                             </p>

@@ -64,7 +64,11 @@ function ExpensesModalComponent({
   const month = String(fecha_actual.getMonth() + 1).padStart(2, "0");
   const day = String(fecha_actual.getDate()).padStart(2, "0");
 
-  const fecha_formateada = `${year}-${month}-${day}`;
+  const hours = String(fecha_actual.getHours()).padStart(2, "0");
+  const minutes = String(fecha_actual.getMinutes()).padStart(2, "0");
+  const seconds = String(fecha_actual.getSeconds()).padStart(2, "0");
+  
+  const fecha_formateada = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
   const onSubmit = handleSubmit(async (data: any) => {
     try {
