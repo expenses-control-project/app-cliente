@@ -59,7 +59,7 @@ function RegisterView() {
       <form onSubmit={onSubmit}>
         {/** Nombre y Apellido */}
         <div className="d-flex gap-sm-3 flex-column flex-sm-row">
-          <div className="d-flex flex-column align-items-start mb-3">
+          <div className="d-flex flex-column align-items-start mb-3" style={{ width: "100%" }}>
             <div className="form-floating" style={{ width: "100%" }}>
               <NombreInput
                 type="text"
@@ -81,7 +81,7 @@ function RegisterView() {
               </p>
             )}
           </div>
-          <div className="d-flex flex-column align-items-start mb-3">
+          <div className="d-flex flex-column align-items-start mb-3" style={{ width: "100%" }}>
             <div className="form-floating" style={{ width: "100%" }}>
               <ApellidoInput
                 type="text"
@@ -105,7 +105,7 @@ function RegisterView() {
         </div>
         {/** Usuario y Edad */}
         <div className="d-flex gap-sm-3 flex-column flex-sm-row">
-          <div className="d-flex flex-column align-items-start mb-3">
+          <div className="d-flex flex-column align-items-start mb-3" style={{ width: "100%" }}>
             <div className="form-floating" style={{ width: "100%" }}>
               <input
                 type="text"
@@ -126,7 +126,7 @@ function RegisterView() {
               </p>
             )}
           </div>
-          <div className="d-flex flex-column align-items-start mb-3">
+          <div className="d-flex flex-column align-items-start mb-3" style={{ width: "100%" }}>
             <div className="form-floating" style={{ width: "100%" }}>
               <input
                 type="number"
