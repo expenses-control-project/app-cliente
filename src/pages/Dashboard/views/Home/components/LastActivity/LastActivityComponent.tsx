@@ -8,7 +8,7 @@ import IconsRubrosComponent from "../../../../../../components/icons/IconsRubros
 
 interface LastActivityProps {
   loading: boolean,
-  activity: any
+  activity: any | null
 }
 
 function LastActivityComponent({activity, loading}: LastActivityProps) {
@@ -28,7 +28,7 @@ function LastActivityComponent({activity, loading}: LastActivityProps) {
           <Spinner />
         ) : (
           <>
-            {activity != null ? (
+            {activity != undefined && activity != null && activity.length > 0 ? (
               <>
                 {activity.map((item: any, index: number) => (
                   <div
