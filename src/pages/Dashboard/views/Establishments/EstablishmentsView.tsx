@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import EstablishmentsModalComponent from "../../components/Modals/EstablishmentsModalComponent";
-import {
-  PencilFill,
-  Trash3Fill,
-} from "react-bootstrap-icons";
+import { PencilFill, Trash3Fill } from "react-bootstrap-icons";
 import { MdAdd } from "react-icons/md";
 import useFetchAndLoad from "../../../../hooks/useFetchAndLoad";
 import {
@@ -13,6 +10,10 @@ import {
 import IconsRubrosComponent from "../../../../components/icons/IconsRubrosComponent";
 import LoaderComponent from "../../../../components/Loader/LoaderComponent";
 import Swal from "sweetalert2";
+
+import "./EstablishmentsViewStyles.css";
+import establishment from "../../../../assets/lottie/establecimiento_animation.json"
+import Lottie from "lottie-react";
 
 function EstablishmentsView() {
   const [showModalEstablishments, setShowModalEstablishments] = useState(false);
@@ -75,76 +76,95 @@ function EstablishmentsView() {
   };
 
   return (
-    <section className="px-2 py-2 px-sm-5 py-sm-4">
-      <div className="card ">
-        <div className="card-header bg-body-secondary d-flex flex-row justify-content-between align-items-center gap-3">
-          <h2 className="fs-5">Lista de locales</h2>
-          <button
-            className="btn btn-success rounded-pill d-flex flex-row align-items-center gap-2"
-            onClick={() => {
-              handleOpenModalAccount("Crear un local");
-            }}
-          >
-            <MdAdd size={20} /> Local
-          </button>
-        </div>
-        <div className=" card-body d-flex flex-column gap-2">
-          {loading ? (
-            <LoaderComponent />
-          ) : (
-            <>
-              {establishments.length > 0 ? (
-                <>
-                  {establishments.map((e: any, index) => (
-                    <div
-                      className="d-flex gap-2 p-2 flex-row justify-content-between align-items-center"
-                      key={index}
-                    >
+    <section
+      className="px-2 py-2 px-sm-5 py-sm-4 container-establishments"
+      style={{ height: "calc(100vh - 57px)" }}
+    >
+      {loading ? (
+        <LoaderComponent />
+      ) : (
+        <>
+          {establishments.length > 0 ? (
+            <div className="card ">
+              <div className="card-header bg-body-secondary d-flex flex-row justify-content-between align-items-center gap-3">
+                <h2 className="fs-5">Todos los locales</h2>
+              </div>
+              <div className=" card-body d-flex flex-column gap-2">
+                {establishments.map((e: any, index) => (
+                  <div
+                    className="d-flex gap-2 p-2 flex-row justify-content-between align-items-center"
+                    key={index}
+                  >
+                    <div>
                       <div>
-                        <div>
-                          <IconsRubrosComponent bg={"bg-secondary"} idRubro={e.idRubro} />
-                        </div>
-                        <div>
-                          <h4 className="fs-5 mb-0">
-                            {e.nombreEstablecimiento}
-                          </h4>
-                          <p className="mb-0 text fs-6 text-body-secondary">
-                            {e.rubro.nombreRubro}
-                          </p>
-                        </div>
+                        <IconsRubrosComponent
+                          bg={"bg-secondary"}
+                          idRubro={e.idRubro}
+                        />
                       </div>
-                      <div className=" d-flex gap-2">
-                        <button
-                          className="btn btn-warning rounded-pill"
-                          onClick={() => {
-                            updateEstablishment("Editar Local", e);
-                          }}
-                        >
-                          {" "}
-                          <PencilFill size={20} />
-                        </button>
-                        <button
-                          onClick={() => {
-                            deleteEstablishments(e.idEstablecimiento);
-                          }}
-                          className="btn btn-danger rounded-pill"
-                        >
-                          {" "}
-                          <Trash3Fill size={20} />
-                        </button>
+                      <div>
+                        <h4 className="fs-5 mb-0">{e.nombreEstablecimiento}</h4>
+                        <p className="mb-0 text fs-6 text-body-secondary">
+                          {e.rubro.nombreRubro}
+                        </p>
                       </div>
                     </div>
-                  ))}
-                </>
-              ) : (
-                <div className="d-flex flex-column align-items-center">
-                  <h2 className=" fs-4">No hay locales</h2>
-                  <h3 className="fs-6"> Por favor cree uno + </h3>
-                </div>
-              )}
-            </>
+                    <div className=" d-flex gap-2">
+                      <button
+                        className="btn btn-warning rounded-pill"
+                        onClick={() => {
+                          updateEstablishment("Editar Local", e);
+                        }}
+                      >
+                        {" "}
+                        <PencilFill size={20} />
+                      </button>
+                      <button
+                        onClick={() => {
+                          deleteEstablishments(e.idEstablecimiento);
+                        }}
+                        className="btn btn-danger rounded-pill"
+                      >
+                        {" "}
+                        <Trash3Fill size={20} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div
+            className="d-flex flex-column align-items-center justify-content-center"
+            style={{ height: "100%" }}
+          >
+            <Lottie
+              animationData={establishment}
+              style={{ maxWidth: "20rem", height: "12rem" }}
+            />
+            <h2 className="text-center">No hay locales creados</h2>
+            <p className="text-center w-75">
+              Para agregar un nuevo local, haz clic en el botón{" "}
+              <strong>+</strong> que encontrarás en la esquina inferior derecha.
+              Completa la información requerida y guarda los cambios para añadirlo.
+            </p>
+          </div>
           )}
-        </div>
+        </>
+      )}
+
+      <div
+        className="pb-4 d-flex justify-content-center mb-5 mb-lg-0"
+        style={{ position: "fixed", bottom: "0", right: "1rem" }}
+      >
+        <button
+          className="btn btn-success rounded-pill d-flex flex-row align-items-center gap-2"
+          onClick={() => {
+            handleOpenModalAccount("Crear un local");
+          }}
+        >
+          Local <MdAdd size={20} />
+        </button>
       </div>
       <EstablishmentsModalComponent
         title={title}

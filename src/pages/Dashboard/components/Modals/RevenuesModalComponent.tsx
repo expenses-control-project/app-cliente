@@ -20,7 +20,7 @@ function RevenuesModalComponent({
   cuentas,
   handleClose,
   getAccounts,
-  getAllActivitys
+  getAllActivity
 }: RevenuesModalProps) {
   const [text, setText] = useState("");
   const [showToast, setShowToast] = useState(false);

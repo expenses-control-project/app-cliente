@@ -77,9 +77,9 @@ function ExpensesModalComponent({
       const res = await callEndpoint(postExpenseRequest(data));
       if (res?.data.statusCode == 201) {
         getAccounts();
+        getAllActivity();
         handleClose();
         handleShowToast();
-        getAllActivity();
         reset({
           monto: "",
           descripcion: "",

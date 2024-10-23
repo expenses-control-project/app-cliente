@@ -58,7 +58,7 @@ export const deleteAccountRequest = (id: number) => {
   return {
     call: axios.delete(`/cuenta/${id}`, {
       signal: controller.signal,
-      headers: {"expenses-control-jwt": `${token}` },
+      headers: {"expenses-control-jwt":`${token}`},
     }),
     controller,
   };

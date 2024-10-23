@@ -13,7 +13,7 @@ const MovementsView = lazy(() => import("./views/Movements/MovementsView"));
 
 function DashboardPage() {
   return (
-    <main className="d-flex flex-column flex-sm-row" style={{height: "100vh"}}>
+    <main className="d-flex flex-column flex-sm-row h-100 h-lg-auto">
       <SidebarComponent />
       <div className="d-fex flex-column " style={{ width: "100%"}}>
         <TopNavbarComponent />

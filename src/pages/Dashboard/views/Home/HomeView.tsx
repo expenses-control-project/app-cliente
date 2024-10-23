@@ -92,7 +92,7 @@ function HomeView() {
   }, []);
 
   return (
-    <section className="ps-3 ps-sm-5 px-lg-5 py-4 position-relative">
+    <section className="ps-3 pe-3 pe-sm-5 ps-sm-5 py-4 position-relative container-home" style={{height: "calc(100vh - 57px)"}}>
       {loading ? (
         <LoaderComponent />
       ) : (
@@ -108,19 +108,24 @@ function HomeView() {
               <LastActivityComponent loading={loading} activity={activity}/>
             </>
           ) : (
-            <div className="d-flex flex-column align-items-center justify-content-center">
+            <div className="d-flex flex-column align-items-center justify-content-center" style={{height: "100%"}}>
               <Lottie
                 animationData={welcome_animation}
                 style={{ maxWidth: "20rem", height: "20rem" }}
               />
               <h1 className="fs-2">Bienvenido/a 👋 </h1>
-              <p className="fs-6 w-50 text-center">
+              <p className="fs-6 text-center">
                 Para empezar a administrar tus gastos, primero tenes que crear
-                una cuenta
+                una cuenta y luego un local
               </p>
-              <Link to="/dashboard/cuentas" className="btn btn-primary">
-                Ir a cuentas
-              </Link>
+              <div className="d-flex flex-column justify-content-center flex-sm-row gap-2" style={{width: "100%"}}>
+                <Link to="/dashboard/cuentas" className="btn btn-block btn-primary">
+                  Ir a cuentas
+                </Link>
+                <Link to="/dashboard/cuentas" className="btn btn-secondary">
+                  Ir a locales
+                </Link>
+              </div>
             </div>
           )}
         </>

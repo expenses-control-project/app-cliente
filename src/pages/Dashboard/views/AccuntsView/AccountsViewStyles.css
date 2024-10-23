@@ -1,0 +1,9 @@
+.container-accounts {
+    height: calc(100vh - 57px);
+}
+
+@media screen and (max-width: 992px) {
+    .container-accounts {
+        height: calc(100vh - 117px);
+    }   
+}

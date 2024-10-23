@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { AxiosResponse, AxiosError } from "axios";
 import { removeItem } from "../utils/localStoreMethods";
+import { useNavigate } from "react-router-dom";
 
 interface AxiosCall<T> {
   call: Promise<AxiosResponse<T>>;
@@ -11,6 +12,8 @@ const useFetchAndLoad = () => {
   const [loading, setLoading] = useState(false);
   const [cancelReason, setCancelReason] = useState<string | null>(null);
   const controllerRef = useRef<AbortController | null>(null);
+
+  const navigate = useNavigate();
 
   const callEndpoint = async (axiosCall: AxiosCall<any>) => {
     // Crear un nuevo controller si no existe uno
@@ -30,8 +33,11 @@ const useFetchAndLoad = () => {
       if (err instanceof AxiosError && err.name === "CanceledError") {
         console.log(`Request canceled due to: ${cancelReason}`);
       } else if (err.response?.status === 401) {
+        // Si se recibe un 401, eliminar el token del localStorage
         removeItem("token");
-      } else {
+        navigate('/users/login');
+      }  
+      else {
         throw err;
       }
     } finally {

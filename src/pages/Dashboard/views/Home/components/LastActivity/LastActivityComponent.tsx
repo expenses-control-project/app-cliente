@@ -1,16 +1,9 @@
 import Lottie from "lottie-react";
 import waiting_activity from "../../../../../../assets/lottie/waiting_activity.json";
 import { Link } from "react-router-dom";
-import useFetchAndLoad from "../../../../../../hooks/useFetchAndLoad";
-import { useEffect, useState } from "react";
-import { getRevenuesRequest } from "../../../../../../services/revenues.service";
-import { getExpensesRequest } from "../../../../../../services/expenses.service";
 import { Spinner } from "react-bootstrap";
 import { ArrowUpCircle } from "react-bootstrap-icons";
-import {
-  formatCurrency,
-  formatDateToDDMMYY,
-} from "../../../../../../utils/formatterValue.util";
+import { formatCurrency, formatDateToDDMMYY} from "../../../../../../utils/formatterValue.util";
 import IconsRubrosComponent from "../../../../../../components/icons/IconsRubrosComponent";
 
 interface LastActivityProps {

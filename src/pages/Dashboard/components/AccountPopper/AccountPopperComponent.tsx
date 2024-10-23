@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { OverlayTrigger, Popover } from "react-bootstrap";
-import { BoxArrowRight, Person } from "react-bootstrap-icons";
+import { BoxArrowRight } from "react-bootstrap-icons";
 import { removeItem } from "../../../../utils/localStoreMethods";
 import { useNavigate } from "react-router-dom";
 
@@ -19,10 +19,10 @@ function AccountPopperComponent() {
       <Popover.Header as="h3">Cuenta</Popover.Header>
       <Popover.Body className="p-0">
         <ul className="list-unstyled d-flex flex-column mb-0" style={{width: "12rem"}}>
-          <li className="link-hover d-flex gap-2 p-2" >
+          {/*<li className="link-hover d-flex gap-2 p-2" >
             <Person size={20}/>
             <a href="/profile" className="nav-link " style={{width: "100%"}}>Perfil</a>
-          </li>
+          </li>*/}
           <li className="link-hover border-top d-flex py-2 px-2 gap-2 text-danger">
             <BoxArrowRight size={20} />
             <button onClick={logout} className="nav-link " style={{width: "100%"}}>Cerrar Sesión</button>

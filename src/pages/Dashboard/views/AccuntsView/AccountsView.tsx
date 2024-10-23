@@ -2,9 +2,15 @@ import { useEffect, useState } from "react";
 import TableAccountsComponent from "./components/TableAccountsComponent";
 import { Plus } from "react-bootstrap-icons";
 import AccountModalComponent from "../../components/Modals/AccountModalComponent";
-import { deleteAccountRequest, getAccountsRequest } from "../../../../services/accounts.service";
+import {
+  deleteAccountRequest,
+  getAccountsRequest,
+} from "../../../../services/accounts.service";
 import useFetchAndLoad from "../../../../hooks/useFetchAndLoad";
 import Swal from "sweetalert2";
+import LoaderComponent from "../../../../components/Loader/LoaderComponent";
+
+import "./AccountsViewStyles.css"
 
 function AccountsView() {
   const [showModalAccount, setShowModalAccount] = useState(false);
@@ -12,7 +18,7 @@ function AccountsView() {
 
   const [account, setAccount] = useState([]);
   const [row, setRow] = useState(null);
-  const { callEndpoint } = useFetchAndLoad();
+  const { loading, callEndpoint } = useFetchAndLoad();
 
   const handleOpenModalAccount = (title: string) => {
     setShowModalAccount(true);
@@ -58,28 +64,31 @@ function AccountsView() {
     getAccounts();
   }, []);
   return (
-    <section className="p-4">
+    <section className="p-4 container-accounts">
       <div
         className="pb-4 d-flex justify-content-center mb-5 mb-lg-0"
         style={{ position: "fixed", bottom: "0", right: "1rem" }}
       >
         <button
           className="btn btn-success rounded-pill d-flex align-items-center"
-          style={{ width: "3rem", height: "3rem" }}
           onClick={() => {
             setRow(null);
             handleOpenModalAccount("Crear Cuenta");
           }}
         >
-          <Plus size={40} />
+          Cuenta <Plus size={20} />
         </button>
       </div>
-      <TableAccountsComponent
-        data={account}
-        handleOpen={handleOpenModalAccount}
-        handleDelete={handleDelete}
-        setRow={setRow}
-      />
+      {loading ? (
+        <LoaderComponent />
+      ) : (
+        <TableAccountsComponent
+          data={account}
+          handleOpen={handleOpenModalAccount}
+          handleDelete={handleDelete}
+          setRow={setRow}
+        />
+      )}
       <AccountModalComponent
         title={title}
         show={showModalAccount}
